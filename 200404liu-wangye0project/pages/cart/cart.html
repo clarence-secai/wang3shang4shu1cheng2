@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <a href="/index">返回</a>
+        {{.Session.UserName}}的购物车情况如下：<br/>
+        <tr>
+            <td>书名</td>
+            <td>单价</td>
+            <td>数量</td>
+            <td>小计</td>
+        </tr>
+        <br/>
+        <tr>
+            {{range .CartItems}}
+            <td>{{.Book.Title}}</td>
+            <td>{{.Book.Price}}</td>
+            <td>{{.Count}}</td>
+            <td>{{.Amount}}</td>
+            <br/>
+            {{end}}
+        </tr>
+        <br/>
+        总数量：{{.TotalCount}}<br/>
+        总计：{{.TotalAmount}}<br/>
+        <br/>
+        <a href="/deletecart?cartid={{.CartId}}">删除购物车</a>
+    </body>
+</html>

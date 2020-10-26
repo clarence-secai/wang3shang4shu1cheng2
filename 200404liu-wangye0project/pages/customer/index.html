@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        {{if .IsLogin}}
+            欢迎:{{.UserName}}
+        {{else}}
+        <a href="/pages/customer/loginpage.html">登录</a>
+        <a href="/pages/customer/registpage.html">注册</a>
+        {{end}}
+        <a href="/logout">退出用户</a><br/>
+        <a href="/cartinfo">购物车</a>
+        <a href="/pages/manager/manager.html">管理员</a><br/>
+        <img src="/picture/a.jpg">
+        <br/>
+
+        <form action="/index" method="POST">
+            最低价：<input type="text" name="min" value="{{.Min}}">
+            最高价：<input type="text" name="max" value="{{.Max}}">
+            <input type="submit" value="查找">
+        </form>
+        <br/>
+
+        {{range .PageBooks}}
+            <img src="{{.Img}}">
+            书名：{{.Title}}
+            价格：{{.Price}}
+            销量：{{.Sale}}
+            库存：{{.Stock}}
+            {{if .Stock}}  <!-- .Stock 是0，则为false，大于零为true 布尔函数会将任何类型的零值视为假，其余视为真。-->
+            <a href="/add2cart?id={{.Id}}">购买</a><br/>
+            {{else}}
+            售罄，补货中
+            {{end}}
+        {{end}}      
+        {{if .HaveFirst}}
+            <a href="/index?pageno={{.PrePageNo}}&max={{.Max}}&min={{.Min}}">前一页</a><br/>
+        {{end}}
+        当前页：{{.PageNo}}
+        <form action="/index?max={{.Max}}&min={{.Min}}" method="POST">
+        <input type="text" name="pageno" value={{.PageNo}}>
+        <input type="submit" value="前往该页码">
+        </form>
+        {{if .HaveLast}}
+            <a href="/index?pageno={{.NextPageNo}}&max={{.Max}}&min={{.Min}}">后一页</a>
+        {{end}}
+        总页数：{{.TotalPages}}
+    </body>
+</html>

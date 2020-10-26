@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <meta charset="UTF-8" />
+    </head>
+    <body>
+        <a href="/bookpage">书籍</a>
+        <a href="/orderpage">订单</a>
+        <a href="/index">首页</a><br/>
+        _______________________________<br/>
+        <tr>
+            <td>序  号</td>
+            <td>书  名</td>
+            <td>价  格</td>
+            <td>销  量</td>
+            <td>库  存</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <br/>
+        {{range .}}
+        <tr>
+        <form action="/bookboxpage?id={{.Id}}" method="POST">
+                <td>{{.Num}}</td>   <!--序号-->
+                <td><input type="text" name="shuming" value="{{.Title}}"/></td>
+                <td><input type="text" name="jiage" value="{{.Price}}"/></td>
+                <td><input type="text" name="xiaoliang" value="{{.Sale}}"/></td>
+                <td><input type="text" name="kucun" value="{{.Stock}}"/></td>
+                <td><a href="/deletebook?id={{.Id}}">删除</a></td>
+                <td><input type="submit" value="修改"/></td>
+            
+        </form>
+        </tr>
+        {{end}}
+        <br/>
+        <a href="/bookboxpage">添加</a>
+    </body>
+</html>

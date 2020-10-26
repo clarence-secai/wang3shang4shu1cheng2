@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <tr>
+            <td>书  名</td>
+            <td>价  格</td>
+            <td>销  量</td>
+            <td>库  存</td>
+        </tr><br/>
+        <form action="/addorchangebook?id={{.Id}}" method="POST">
+            
+            <tr>
+                <td><input type="text" name="shuming" value="{{.Title}}"/></td>
+                <td><input type="text" name="jiage" value="{{.Price}}"/></td>
+                <td><input type="text" name="xiaoliang" value="{{.Sale}}"/></td>
+                <td><input type="text" name="kucun" value="{{.Stock}}"/></td>
+                <input type="submit" value="提交">
+            </tr>
+        </form>
+    </body>
+</html>
